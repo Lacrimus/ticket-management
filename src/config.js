@@ -26,7 +26,7 @@ const config = {
         {
           to : "/settings",
           title : "Einstellungen"
-        },
+        }
       ]
 }
 

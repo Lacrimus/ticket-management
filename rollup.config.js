@@ -1,5 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import sveltePreprocess from 'svelte-preprocess';
+import typescript from 'rollup-plugin-typescript2';
+import css from 'rollup-plugin-css-only';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
@@ -8,49 +10,52 @@ import { terser } from 'rollup-plugin-terser';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: 'src/main.js',
+	input: 'src/main.ts',
 	output: {
-		sourcemap: true,
+		sourcemap: production,
 		format: 'iife',
 		name: 'app',
 		file: 'www/bundle.js'
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-
-			//Somehow both options for preprocessing are very resource intensive...
-			//find a way to decrease this or import tailwind css in another way
-
-			//preprocess any styles, this is needed for tailwindcss import
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production
+			},
+			//preprocess any styles
 			preprocess: sveltePreprocess({ 
 				postcss: true,
 				sourceMap : production
 			}),
-
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
-			css: css => {
-				css.write('bundle.css');
-			}
+			extensions: [".svelte"],
+			emitCss: true,
 		}),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration —
-		// consult the documentation for details:
-		// https://github.com/rollup/rollup-plugin-commonjs
-		resolve({ browser: true }),
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'bundle.css' }),
+
+		typescript({
+			sourceMap: !production,
+			inlineSources: !production
+		}),
+
 		commonjs(),
+
+		resolve({ browser: true }),
 
 		// Watch the www/ directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('www/'),
+		!production && livereload({ watch: "www/", delay: 100 }),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser({
+			output: {
+				comments: false,
+			},
+		})
 	],
 	watch: {
 		clearScreen: false

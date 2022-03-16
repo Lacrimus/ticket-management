@@ -1,6 +1,6 @@
 <script>
     import Ticket from "../components/Ticket.svelte";
-	import Alert from "../components/Alert.svelte";
+	import Alert from "../components/atoms/Alert.svelte";
 	import Dropdown from "../components/basic/Dropdown.svelte";
 	import { messages } from "../components/basic/Messages.svelte"
     import { localDb } from "../LocalDb.svelte";

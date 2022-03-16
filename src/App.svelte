@@ -14,7 +14,7 @@
 	import Sidenav from "./components/molecules/Sidenav.svelte"
 	import Header from "./components/organisims/Header.svelte"
 
-	import config from "./config";
+	import config from "./config.js";
 
 	let archive;
 
@@ -66,9 +66,7 @@
 <svelte:window bind:innerWidth={width} bind:innerHeight={height}/>
 
 <style global lang="postcss">
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
+	
 </style>
 
 

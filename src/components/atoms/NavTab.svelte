@@ -22,19 +22,17 @@
     
     @keyframes pulse {
         from {
-            --tw-bg-opacity: 0.1;
-            background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+            background-color: rgba(191, 219, 254);
         }
         to {
-            --tw-bg-opacity: 0.4;
-            background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+            background-color: rgba(0,0,0);
         }
     }
 </style>
 
-<div class="relative inline-flex">
+<div class="inline-flex relative">
     {#if notified}
-        <div class="animate absolute inline-flex h-full w-full"></div>
+        <div class="inline-flex absolute w-full h-full animate"></div>
     {/if}
-    <Link on:click={() => {sidenav.close()}} {to} class="px-2 w-full text-base leading-6 p-1 text-md">{title}</Link>
+    <Link on:click={() => {sidenav.close()}} {to} class="p-1 px-2 w-full text-base leading-6 text-md">{title}</Link>
 </div>
