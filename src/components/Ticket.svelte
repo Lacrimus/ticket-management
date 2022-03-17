@@ -17,7 +17,7 @@
     function addGoal() {
         if(goalInput.value == "") { 
         } else {
-            ticket.goals.push({description : goalInput.value});
+            ticket.steps.push({description : goalInput.value});
             goalInput.value = "";
         }
     };
@@ -60,6 +60,7 @@
                 </button>
             {/if}   
         </div>
+
         <div slot="body" on:dblclick={() => editable = !editable} class="bg-gray-50">
             <div class="p-1">
                 {#if !editable}
@@ -70,7 +71,7 @@
                     </div>
                 {/if}
                 <HorizontalRule></HorizontalRule>
-                {#each ticket.goals as goal}
+                {#each ticket.steps as goal}
                     <label class="flex items-center space-x-2">
                         <input type="checkbox" class="form-tick appearance-none border border-blue-400 rounded-md">
                         {#if editable}

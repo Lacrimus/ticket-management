@@ -3,7 +3,7 @@
 
     import Ticket from "../molecules/Ticket.svelte"
 
-    export let tickets = []
+    export let tickets;
 </script>
 
 <style>
@@ -12,8 +12,8 @@
 
 <Accordion multiple>
     {#each tickets as ticket}
-	<div class="m-2">
-		<Ticket {ticket} ></Ticket>>
-	</div>
+        <div class="m-2">
+            <Ticket {ticket} ></Ticket>
+        </div>
     {/each}
 </Accordion>

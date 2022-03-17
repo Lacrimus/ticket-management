@@ -7,8 +7,8 @@ Also, [svelte](https://svelte.dev/) is used as an UI framework.
 
 ### Frontend
 + svelte UI framework
-+ tailwind CSS
-+ open iconic icon set
++ svelte material design
++ google fonts icon set
 
 ### Framework / Wrapper
 + Apache Cordova as a cross platform environment using web technologies

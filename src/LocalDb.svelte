@@ -6,8 +6,8 @@
 	export { database as localDb };
 
     database.version(1).stores({
-        tickets: 'id, task, tasklong, goals, archived, creationdate, author, room, duedate',
-        users: 'id, short, shortcolor, staredtickets',
+        tickets: 'id, task, tasklong, steps, archived, creationdate, author, room, duedate',
+        users: 'id, short, shortcolor, markedtickets',
     });
 
     database.open().catch(function (err) {
@@ -36,7 +36,7 @@
 		id : 0,
 		task: "Austausch Whiteboard",
 		tasklong: "Altes Whiteboard durch neues Modell ersetzen.",
-		goals: [
+		steps: [
 			{
 				description : "Anlieferung durch Legamaster",
 				checked : 1
@@ -64,7 +64,7 @@
 		id: 1,
 		task: "Reparatur Beamer",
 		tasklong: "EPSON Projektor, Überhitzt ständig, Abmontieren und Entstauben",
-		goals: [
+		steps: [
 			{
 				description : "Kauf Druckluftreiniger",
 				checked : 1

@@ -1,17 +1,15 @@
 <script lang="ts">
-    import Accordion, { Panel, Header, Content} from '@smui-extra/accordion';
-    //import Card, {Content, PrimaryAction, Media, MediaContent} from '@smui/card';
-    export let ticket = {};
+    import { Icon, Label } from "@smui/common";  
+    import Textfield from "@smui/textfield";
+    import Button from "@smui/button";
+    import Accordion, { Panel, Header, Content} from "@smui-extra/accordion";
+    import StepList from "./StepList.svelte";
 
-    let goalInput;
+    import type Ticket from "../../indexedDb/Ticket";
 
-    function addGoal() {
-        if(goalInput.value == "") { 
-        } else {
-            ticket.goals.push({description : goalInput.value});
-            goalInput.value = "";
-        }
-    };
+    export let ticket: Ticket;
+
+    let disabled = true;
 
     function formatDate(date) {
         date = new Date()
@@ -20,21 +18,26 @@
 
 </script>
 
-<style>
-
-</style>
-
-
-<Accordion multiple>
-    <Panel>
-        <Header>Panel 1</Header>
-        <Content>
-          The content for panel 1.
-          <ul>
-            <li>Some</li>
-            <li>List</li>
-            <li>Items</li>
-          </ul>
-        </Content>
-      </Panel>
-</Accordion>
+<Panel>
+  <Header>
+    <Label style="display: flex; flex-wrap: wrap; align-items: center;">
+      <Textfield {disabled} bind:value={ticket.task} label="Aufgabe"></Textfield>
+      <Textfield {disabled} bind:value={ticket.room} label="Raum"></Textfield>
+      <Textfield {disabled} value={ticket.duedate.toString()} label="Fälligkeitsdatum"></Textfield>
+    </Label>
+  </Header>
+  <Content>
+    <Textfield style="width: 100%; margin-bottom: 8px;" helperLine$style="width: 100%;" textarea {disabled} bind:value="{ticket.tasklong}" label="Aufgabe"></Textfield>
+      <StepList bind:steps={ticket.steps} {disabled}></StepList>
+      <div class="columns" style="margin-top: 8px;">
+        <Button on:click={()=>{}} touch >
+          <Icon class="material-icons">control_point</Icon>
+          <Label>Schritt hinzufügen</Label>
+        </Button>
+        <Button on:click={()=>{}} touch variant="outlined" style="float:right">
+          <Icon class="material-icons">edit</Icon>
+          <Label>Editieren</Label>
+        </Button>
+      </div>
+  </Content>
+</Panel>

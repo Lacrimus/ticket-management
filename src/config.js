@@ -22,11 +22,7 @@ const config = {
         {
           to : "/archive",
           title : "Archiv"
-        },      
-        {
-          to : "/settings",
-          title : "Einstellungen"
-        }
+        }     
       ]
 }
 

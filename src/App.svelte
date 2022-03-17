@@ -9,10 +9,10 @@
 	import InProcess from "./routes/inprocess.svelte";
 	import Done from "./routes/done.svelte";
 	import Archive from "./routes/archive.svelte";
-	import Settings from "./routes/settings.svelte";
 	
-	import Sidenav from "./components/molecules/Sidenav.svelte"
-	import Header from "./components/organisims/Header.svelte"
+	import Nav from "./components/molecules/Nav.svelte"
+	import Header from "./components/molecules/Header.svelte"
+	import Drawer from "./components/molecules/Drawer.svelte"
 
 	import config from "./config.js";
 
@@ -69,17 +69,15 @@
 	
 </style>
 
-
 <Router url="{url}">
-	<Header class="absolute" htw="{height > width}"/>
-	{#if height > width}
-		<Sidenav/>
-	{/if}
+	<Header/>
+	<Nav/>
+	<Drawer>
 		<Route path="/"><Home user={APP_USER}/></Route>
 		<!--<Route path="tickets"><Tickets bind:this={tickets}/></Route>-->
 		<Route path="new"><New/></Route>
 		<Route path="inprocess"><InProcess/></Route>
 		<Route path="done"><Done/></Route>
 		<Route path="archive"><Archive bind:this={archive}/></Route>
-		<Route path="settings"><Settings/></Route>
+	</Drawer>
 </Router>
