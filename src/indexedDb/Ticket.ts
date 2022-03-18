@@ -1,4 +1,4 @@
-import type { BooleanNumber, ITicket } from "./indexedDb"
+import type { BooleanNumber, ITicket } from "./indexedDb";
 
  /**
   * None of these properties may be of type boolean! It is not a valid key in an IndexedDB.
@@ -21,8 +21,8 @@ export class Ticket implements ITicket {
 	room:  string;
 	dueDate: Date | "Nie";
 
-	constructor(id: number, task: string, author: string) {
-		this.id = id;
+	constructor(task: string, author: string) {
+		this.id = this.dertermineNextId();
 		this.task = task;
 		this.creationDate = new Date();
 		this.author = author;
@@ -31,5 +31,8 @@ export class Ticket implements ITicket {
 		this.dueDate = "Nie";
 	}
 
-	//methods
+	dertermineNextId() {
+		let id =  Math.floor((Math.random() * 1000) + 1); 
+		return id;
+	}
 }

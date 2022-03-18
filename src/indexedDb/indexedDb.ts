@@ -1,4 +1,4 @@
-import Dexie, { type Middleware } from 'dexie';
+import Dexie, { type Middleware } from "dexie";
 
 class TMDatabase extends Dexie {
     tickets: Dexie.Table<ITicket, number>
@@ -9,8 +9,8 @@ class TMDatabase extends Dexie {
     
 
     this.version(1).stores({
-        tickets: '++id, task, tasklong, steps, archived, creationDate, author, room, dueDate',
-        users: '++id, name, color, markedTickets',
+        tickets: "++id, task, tasklong, steps, archived, creationDate, author, room, dueDate",
+        users: "++id, name, color, markedTickets",
     });
 
     }

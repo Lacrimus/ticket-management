@@ -1,7 +1,6 @@
 <script>
     import { localDb } from "../LocalDb.svelte";
     import TicketList from "../components/organisims/TicketList.svelte";
-	import Alert from "../components/atoms/Alert.svelte";
 
     let tickets = [];
 

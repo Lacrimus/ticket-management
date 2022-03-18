@@ -12,11 +12,9 @@
     let stepsInput;
 </script>
 
-<div>
-    {#each steps as step, i}
-        <FormField>
-            <Checkbox bind:checked touch/>
-            <Textfield {disabled} value="{step.description}" label="Schritt {i+1}"></Textfield>
-        </FormField>
-    {/each}
-</div>
+{#each steps as step, i}
+<FormField>
+    <Checkbox bind:checked touch/>
+    <Textfield {disabled} value="{step.description}" label="Schritt {i+1}"></Textfield>
+</FormField>
+{/each}

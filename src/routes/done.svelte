@@ -1,6 +1,5 @@
 <script>
-    import Ticket from "../components/Ticket.svelte";
-	import Alert from "../components/atoms/Alert.svelte";
+    import TicketList from "../components/organisims/TicketList.svelte";
 	import SwipeList from "../components/molecules/SwipeList.svelte"
 	import { localDb } from "../LocalDb.svelte";
 
@@ -25,7 +24,6 @@
 
 </SwipeList>
 
-{#each tickets as ticket}
-	<Ticket class="m-2" ticket={ticket}></Ticket>
-{/each}
+<TicketList {tickets}/>
+
 

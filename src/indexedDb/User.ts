@@ -1,4 +1,4 @@
-import type { ITicket, IUser } from "./indexedDb"
+import type { ITicket, IUser } from "./indexedDb";
 
 
 export default class User implements IUser {	

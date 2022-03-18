@@ -33,7 +33,7 @@
 
 	let demoticketsIn = [
 	{	
-		id : 0,
+		id : 45674567,
 		task: "Austausch Whiteboard",
 		tasklong: "Altes Whiteboard durch neues Modell ersetzen.",
 		steps: [
@@ -58,10 +58,10 @@
 		creationdate: "01.03.2022",
 		author: "BHG",
 		room: "4.101",
-		duedate: "21.06.2022"
+		dueDate: "21.06.2022"
 	},	
 	{
-		id: 1,
+		id: 68656845,
 		task: "Reparatur Beamer",
 		tasklong: "EPSON Projektor, Überhitzt ständig, Abmontieren und Entstauben",
 		steps: [
@@ -82,7 +82,7 @@
 		creationdate: "01.03.2022",
 		author: "STO",
 		room: "2.102",
-		duedate: "02.01.2022"
+		dueDate: "02.01.2022"
 	},
 	];
 	

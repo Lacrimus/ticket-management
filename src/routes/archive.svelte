@@ -1,6 +1,9 @@
 <script>
-    import Accordion from "../components/basic/Accordion.svelte";
-    import Ticket from "../components/Ticket.svelte";
+    import Accordion, { Panel, Header, Content} from "@smui-extra/accordion";
+    import { Label } from "@smui/button";
+    import List, { Item, Text } from "@smui/list";
+    import Ticket from "../components/molecules/Ticket.svelte";
+    import TicketList from "../components/organisims/TicketList.svelte";
     import { localDb } from "../LocalDb.svelte";
 
     let tickets = [];
@@ -38,23 +41,17 @@
 
 </style>
 
-<div class="m-2 text-center">
-    <h1 class="inline-block text-xl">Archiv</h1>
-</div>
-<div class="flex flex-col space-y-2">
+<h2>Archiv</h2>
+
+<Accordion multiple>
     {#each times as time}
-        <Accordion bind:this={time.accordion}>
-            <button slot="header" on:click={() => {time.accordion.toggle()}} class="mx-2 text-gray-700 focus:outline-none">
-                <span>{time.description}</span>
-            </button>
-            <div slot="body" class="flex-col">
-                {#each tickets as ticket}
-                        <div class="m-2">
-                            <Ticket ticket={ticket}></Ticket>
-                        </div>
-                {/each}
-            </div>
-            <div slot="footer">
-        </Accordion>
+        <Panel>
+            <Header>
+                <Label>{time.description}</Label>
+            </Header>
+            <Content>
+                <TicketList {tickets}/>
+            </Content>
+        </Panel> 
     {/each}
-</div>
+</Accordion>

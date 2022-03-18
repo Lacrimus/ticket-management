@@ -36,12 +36,12 @@ export default {
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
 
+		commonjs(),
+
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production
 		}),
-
-		commonjs(),
 
 		resolve({ browser: true }),
 
