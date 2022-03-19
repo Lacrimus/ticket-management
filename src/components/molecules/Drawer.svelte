@@ -19,7 +19,6 @@
         position: relative;
         display: flex;
         height:100%;
-        width:100%;
         border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
         overflow: hidden;
         z-index: 1;

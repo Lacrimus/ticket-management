@@ -10,7 +10,7 @@
 
     import { Ticket } from "../indexedDb/Ticket.ts";
 
-    let ticket:Ticket
+    let ticket:Ticket = Ticket.proto();
 
     let temp = {
         id: "",

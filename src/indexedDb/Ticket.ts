@@ -19,20 +19,29 @@ export class Ticket implements ITicket {
 	creationDate: Date;
 	author: string;
 	room:  string;
-	dueDate: Date | "Nie";
+	dueDate: Date | string;
 
-	constructor(task: string, author: string) {
-		this.id = this.dertermineNextId();
+	constructor(task: string, room?: string, dueDate?: Date | string) {
+		this.id = this.determineNextId();
 		this.task = task;
 		this.creationDate = new Date();
-		this.author = author;
+		this.author = this.determineAuthor();
 		this.archived = 0;
-		this.room = "/"
-		this.dueDate = "Nie";
+		this.room = (room !== "" || typeof(dueDate) == "undefined") ? room : "/"
+		this.dueDate = (dueDate !== "" || typeof(dueDate) == "undefined") ? dueDate : "Nie";
 	}
 
-	dertermineNextId() {
+	static proto() {
+		return new Ticket("");
+	}
+
+	determineNextId() {
 		let id =  Math.floor((Math.random() * 1000) + 1); 
 		return id;
+	}
+
+	determineAuthor() {
+		let author = "TestAuthor"
+		return author;
 	}
 }

@@ -35,7 +35,7 @@ export interface ITicket {
 	creationDate: Date;
 	author: string;
 	room: string;
-	dueDate: Date | "Nie";
+	dueDate: Date | string;
 }
 
 export interface IUser {
