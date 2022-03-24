@@ -2,8 +2,11 @@
     import Textfield from "@smui/textfield";
     import Card, { Content } from '@smui/card';
     export let style = undefined, helperLine$style = undefined, textarea = undefined;
-    export let disabled = false;
-    export let value, label = "";
+    export let disabled = true;
+    export let value: string | null = null;
+    export let label: string | null = null;
+
+    $: if(value == "") {value = null;}
 
 </script>
 
@@ -22,8 +25,9 @@
     {/if}
     <slot></slot>
 {:else}
-    <Textfield {disabled} bind:value={value} {label} {style} {helperLine$style} {textarea}>
+    <Textfield {disabled} bind:value {label} {style} {helperLine$style} {textarea}>
         <slot></slot>
     </Textfield>
+    <slot name="trailingIcon"></slot>
 {/if}
 

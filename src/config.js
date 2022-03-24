@@ -8,8 +8,8 @@ const config = {
           title : "Übersicht"
         },
         {
-          to : "/new",
-          title : "Neu"
+          to : "/create",
+          title : "Erstellen"
         },
         {
           to : "/inprocess",

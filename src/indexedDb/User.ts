@@ -1,11 +1,11 @@
-import type { ITicket, IUser } from "./indexedDb";
+import type { ITicket, IUser } from "./DbConnection";
 
 
 export default class User implements IUser {	
     id: number;
 	name: string;
 	color: string;
-    markedTickets: ITicket[]
+    markedTickets: ITicket[];
 
     constructor(id: number, name: string, color: string) {
 		this.id = id;

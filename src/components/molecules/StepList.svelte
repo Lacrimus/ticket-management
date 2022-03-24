@@ -1,20 +1,26 @@
 <script lang="ts">
-    import { Icon, Label } from "@smui/common";  
-    import Button from "@smui/button";
-    import Checkbox from "@smui/checkbox";
+    import IconButton from "@smui/icon-button";
     import FormField from "@smui/form-field";
+    import CCheckbox from "../atoms/CCheckbox.svelte";
     import CTextfield from "../atoms/CTextfield.svelte";
+    import type { Step } from "../../indexedDb/Ticket";
+    import { createEventDispatcher } from "svelte";
 
-    export let steps, disabled;
+    const dispatch = createEventDispatcher();
 
-    let checked;
+    export let steps: Step[] | null = null;
+    export let disabled = false;
 
-    let stepsInput;
 </script>
 
 {#each steps as step, i}
-<FormField>
-    <Checkbox bind:checked touch/>
-    <CTextfield {disabled} value="{step.description}" label="Schritt {i+1}"></CTextfield>
-</FormField>
+    <FormField>
+        <CCheckbox on:click={() => {dispatch("check", i)}} bind:checked={step.checked}/>
+        <CTextfield {disabled} bind:value={step.description} label="Schritt {i++}">
+            <div style="display:inline-flex;" slot="trailingIcon">
+                <IconButton on:click={() => {step.description = null}} class="material-icons" touch size="button">clear</IconButton>
+                <IconButton on:click={() => {steps.splice(i, 1); steps = steps}} class="material-icons" touch size="button">remove_circle_outline</IconButton>
+            </div>        
+        </CTextfield>
+    </FormField>
 {/each}

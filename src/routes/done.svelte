@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
     import TicketList from "../components/organisims/TicketList.svelte";
 	import SwipeList from "../components/molecules/SwipeList.svelte"
-	import { localDb } from "../LocalDb.svelte";
+    	
+    import DbConnection, { localDb } from "../indexedDb/DbConnection.ts";
 
 	let tickets = [];
 	
@@ -10,7 +11,7 @@
 			tickets = await localDb.tickets.where("archived").equals(0).toArray();
 
 		} catch (error) {
-			console.error((err.stack || err));
+			console.error((error.stack || error));
 		}
 	})
 

@@ -11,10 +11,6 @@
 
 </script>
 
-<style>
-
-</style>
-
 <h2>Übersicht</h2>
 
 <Paper color="primary" variant="outlined">
@@ -40,3 +36,4 @@
           </List>
     </Content>
 </Paper>
+

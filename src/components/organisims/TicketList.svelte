@@ -1,9 +1,10 @@
 <script>
-    import Accordion, { Panel, Header, Content } from '@smui-extra/accordion';
+    import Accordion, { Panel } from '@smui-extra/accordion';
 
     import Ticket from "../molecules/Ticket.svelte"
 
     export let tickets;
+
 </script>
 
 <style>
@@ -12,8 +13,8 @@
 
 <Accordion multiple>
     {#each tickets as ticket}
-        <div class="m-2">
+        <Panel>
             <Ticket {ticket} ></Ticket>
-        </div>
+        </Panel>
     {/each}
 </Accordion>

@@ -1,13 +1,13 @@
 import Dexie, { type Middleware } from "dexie";
 
-class TMDatabase extends Dexie {
-    tickets: Dexie.Table<ITicket, number>
-    users: Dexie.Table<IUser, number>
+export default class DbConnection extends Dexie {
+
+    tickets!: Dexie.Table<ITicket, number>
+    users!: Dexie.Table<IUser, number>
 
     constructor() {
-        super("TMDatabase");
+        super("IndexedDb");
     
-
     this.version(1).stores({
         tickets: "++id, task, tasklong, steps, archived, creationDate, author, room, dueDate",
         users: "++id, name, color, markedTickets",
@@ -15,6 +15,8 @@ class TMDatabase extends Dexie {
 
     }
 }
+
+export const localDb = new DbConnection();
 
  /**
   * None of these properties may be of type boolean! It is not a valid key in an IndexedDB.
@@ -24,18 +26,18 @@ class TMDatabase extends Dexie {
 export interface ITicket {
 	id: number;
 	task: string;
-	tasklong: string;
-	steps: [
-		{
-			description : string;
-			checked : BooleanNumber;
-		}
-	];
-	archived: BooleanNumber;
+	description: string;
+	steps: IStep[];
+	archived: booleanNumber;
 	creationDate: Date;
 	author: string;
 	room: string;
 	dueDate: Date | string;
+}
+
+export interface IStep {
+	description : string;
+	checked : booleanNumber;
 }
 
 export interface IUser {
@@ -49,4 +51,4 @@ export interface IUser {
  * Sadly, this is needed for storing booleans as 1 or 0 due to IndexedDB.
  */
 
- export type BooleanNumber = 1 | 0;
+export type booleanNumber = 1 | 0;

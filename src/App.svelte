@@ -5,7 +5,7 @@
 
 	import Home from "./routes/home.svelte";
 	//import Tickets from "./routes/tickets.svelte";
-	import New from "./routes/new.svelte";
+	import Create from "./routes/create.svelte";
 	import InProcess from "./routes/inprocess.svelte";
 	import Done from "./routes/done.svelte";
 	import Archive from "./routes/archive.svelte";
@@ -70,14 +70,15 @@
 </style>
 
 <Router url="{url}">
-	<Header/>
-	<Nav/>
 	<Drawer>
-		<Route path="/"><Home user={APP_USER}/></Route>
-		<!--<Route path="tickets"><Tickets bind:this={tickets}/></Route>-->
-		<Route path="new"><New/></Route>
-		<Route path="inprocess"><InProcess/></Route>
-		<Route path="done"><Done/></Route>
-		<Route path="archive"><Archive bind:this={archive}/></Route>
+		<Header/>
+		<Nav/>
+		<div class="container">
+			<Route path="/"><Home user={APP_USER}/></Route>
+			<Route path="create"><Create/></Route>
+			<Route path="inprocess"><InProcess/></Route>
+			<Route path="done"><Done/></Route>
+			<Route path="archive"><Archive bind:this={archive}/></Route>
+		</div>
 	</Drawer>
 </Router>

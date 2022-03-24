@@ -1,16 +1,18 @@
-<script>
-    import { localDb } from "../LocalDb.svelte";
-    import TicketList from "../components/organisims/TicketList.svelte";
+<script lang="ts">
+	import TicketList from "../components/organisims/TicketList.svelte";
+	
+	import DbConnection, { localDb } from "../indexedDb/DbConnection.ts";
 
-    let tickets = [];
+    let tickets = []
 
     localDb.on("ready", async function() {
 		try {
 			tickets = await localDb.tickets.where("archived").equals(0).toArray();
 		} catch (error) {
-			console.error((err.stack || err));
+			console.error((error.stack || error));
 		}
 	})
+
 </script>
 
 <TicketList {tickets} >
