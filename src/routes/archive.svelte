@@ -13,7 +13,7 @@
 
     localDb.on("ready", async function() {
         try {
-            tickets = await localDb.tickets.where("archived").equals(0).toArray();
+            tickets = await localDb.tickets.where("[done+archived]").equals([0,0]).or().equals([1,0]).toArray();
         } catch (error) {
             console.error((error.stack || error));
         }

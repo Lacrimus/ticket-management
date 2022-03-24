@@ -18,7 +18,7 @@
         <CCheckbox on:click={() => {dispatch("check", i)}} bind:checked={step.checked}/>
         <CTextfield {disabled} bind:value={step.description} label="Schritt {i++}">
             <div style="display:inline-flex;" slot="trailingIcon">
-                <IconButton on:click={() => {step.description = null}} class="material-icons" touch size="button">clear</IconButton>
+                <IconButton on:click={() => {if(typeof(step) != undefined) {step.description = null} }} class="material-icons" touch size="button">clear</IconButton>
                 <IconButton on:click={() => {steps.splice(i, 1); steps = steps}} class="material-icons" touch size="button">remove_circle_outline</IconButton>
             </div>        
         </CTextfield>

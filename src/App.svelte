@@ -14,10 +14,6 @@
 	import Header from "./components/molecules/Header.svelte"
 	import Drawer from "./components/molecules/Drawer.svelte"
 
-	import config from "./config.js";
-
-	let archive;
-
 	let deviceready
 
 	let url = "";
@@ -26,8 +22,7 @@
 
 	let height;
 
-	const APP_USER = "BHG";
-
+	const appUser = "";
 	/*
  	* Event listeners for the cordova API or mobile device events
  	*/
@@ -74,11 +69,11 @@
 		<Header/>
 		<Nav/>
 		<div class="container">
-			<Route path="/"><Home user={APP_USER}/></Route>
+			<Route path="/"><Home/></Route>
 			<Route path="create"><Create/></Route>
 			<Route path="inprocess"><InProcess/></Route>
 			<Route path="done"><Done/></Route>
-			<Route path="archive"><Archive bind:this={archive}/></Route>
+			<Route path="archive"><Archive/></Route>
 		</div>
 	</Drawer>
 </Router>

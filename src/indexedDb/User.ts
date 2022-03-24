@@ -1,9 +1,10 @@
-import type { ITicket, IUser } from "./DbConnection";
+import type { ITicket, IUser, email} from "./DbConnection";
 
 
 export default class User implements IUser {	
     id: number;
 	name: string;
+    mail: email;
 	color: string;
     markedTickets: ITicket[];
 

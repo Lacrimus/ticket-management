@@ -52,7 +52,7 @@ let demoticketsIn:Ticket[] = [
 ].forEach((value) => {demoticketsIn[1].steps.push(new Step(value))});
 
 localDb.users.count().then(function(count) {
-	if(count == 0) {
+	if(count < 1) {
 		localDb.users.bulkPut(demousersIn).then(function() {
 			console.log("Done putting demousers");
 		}).catch(DbConnection.BulkError, function (error) {
@@ -62,7 +62,7 @@ localDb.users.count().then(function(count) {
 })
 
 localDb.tickets.count().then(function(count) {
-	if(count == 0) {
+	if(count < 1) {
 		localDb.tickets.bulkPut(demoticketsIn).then(function() {
 			console.log("Done putting demotickets");
 		}).catch(DbConnection.BulkError, function (error) {

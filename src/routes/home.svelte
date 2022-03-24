@@ -1,7 +1,6 @@
 <script>
     import Paper, { Title, Content } from "@smui/paper";
     import List, { Item, Separator, Text } from "@smui/list";
-    export let user;
 
     let stat = {
         new : 2,

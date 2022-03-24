@@ -6,11 +6,13 @@
     import Snackbar from "@smui/snackbar";
     import type { SnackbarComponentDev } from "@smui/snackbar";
     import DbConnection, { localDb } from "../../indexedDb/DbConnection.ts";
-
+    import { createEventDispatcher } from "svelte";
     import type Ticket from "../../indexedDb/Ticket";
-import { tick } from "svelte";
 
     export let ticket:Ticket;
+
+    const dispatch = createEventDispatcher();
+
 
     let editing = false;
 
@@ -24,6 +26,7 @@ import { tick } from "svelte";
         if(ticket.steps[i].description == null) {
 				  ticket.steps.splice(i, 1);
           noStepDesc = true;
+          i--;
 		  	}
       };
 
@@ -62,6 +65,13 @@ import { tick } from "svelte";
       })
     }
 
+    function applyFiling(done) {
+      localDb.tickets.where({ id : ticket.id }).modify(function(entry) {
+        entry.done = done;
+      })
+      dispatch("delete", {locally: true, id: ticket.id});
+    }
+
 </script>
 
 <Header>
@@ -77,26 +87,45 @@ import { tick } from "svelte";
   </Label>
 </Header>
 <Content>
+  {#if editing}
+    <Button on:click={() => { dispatch("delete", {db: true, locally: true, id: ticket.id}); }} style="float:right; margin-bottom:16px">Ticket Löschen</Button>
+  {/if}
   <CTextfield textarea disabled={!editing} bind:value={ticket.description} label="Beschreibung" style="width: 100%; margin-bottom: 8px;" helperLine$style="width: 100%;"></CTextfield>
   <StepList on:check={applyCheck} bind:steps={ticket.steps} disabled={!editing}></StepList>
-  <div class="columns" style="margin-top: 8px; overflow: auto;">
-    {#if editing}
-      <Button on:click={()=>{ticket.addProtoStep(); ticket.steps = ticket.steps}} touch >
-        <Icon class="material-icons">control_point</Icon>
-        <Label>Schritt hinzufügen</Label>
-      </Button>
-    {/if}
-    <Button on:click={()=>{editing = !editing; if(!editing) { applyEdit() };}} touch variant="outlined" style="float:right">
-      <Icon class="material-icons">edit</Icon>
-      <Label>
-        {#if editing}
-          Editieren beenden
+  {#if !ticket.archived}
+    <div class="columns" style="margin-top: 8px; overflow: auto;">
+      {#if editing}
+        <Button on:click={() => { ticket.addProtoStep(); ticket.steps = ticket.steps; }} touch >
+          <Icon class="material-icons">control_point</Icon>
+          <Label>Schritt hinzufügen</Label>
+        </Button>
+      {:else} 
+        {#if ticket.done}
+          <Button on:click={() => { applyFiling(0) }} touch >
+            <Icon class="material-icons">restart_alt</Icon>
+            <Label>Wiederaufnehmen</Label>
+          </Button>
         {:else}
-          Editieren  
+          {#if ticket.steps.every((step) => { return step.checked == 1; }) || ticket.steps.length == 0}
+          <Button on:click={() => { applyFiling(1) }} touch >
+            <Icon class="material-icons">done</Icon>
+            <Label>Abheften</Label>
+          </Button>
+          {/if}
         {/if}
-      </Label>
-    </Button>
-  </div>
+      {/if}
+      <Button on:click={() => { editing = !editing; if(!editing) { applyEdit() }; }} touch variant="outlined" style="float:right">
+        <Icon class="material-icons">edit</Icon>
+        <Label>
+          {#if editing}
+            Editieren beenden
+          {:else}
+            Editieren  
+          {/if}
+        </Label>
+      </Button>
+    </div>  
+  {/if}
 </Content>
 
 <Snackbar bind:this={snackbar} variant="stacked">

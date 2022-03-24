@@ -9,8 +9,8 @@ export default class DbConnection extends Dexie {
         super("IndexedDb");
     
     this.version(1).stores({
-        tickets: "++id, task, tasklong, steps, archived, creationDate, author, room, dueDate",
-        users: "++id, name, color, markedTickets",
+        tickets: "++id, task, tasklong, steps, [done+archived], creationDate, author, room, dueDate",
+        users: "++id, name, mail, color, markedTickets",
     });
 
     }
@@ -28,6 +28,7 @@ export interface ITicket {
 	task: string;
 	description: string;
 	steps: IStep[];
+    done: booleanNumber;
 	archived: booleanNumber;
 	creationDate: Date;
 	author: string;
@@ -43,6 +44,7 @@ export interface IStep {
 export interface IUser {
     id: number;
 	name: string;
+    mail: email;
 	color: string;
     markedTickets: ITicket[]
 }
@@ -52,3 +54,5 @@ export interface IUser {
  */
 
 export type booleanNumber = 1 | 0;
+
+export type email = `${string}@${string}.${string}`;

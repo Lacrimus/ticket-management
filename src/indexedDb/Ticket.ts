@@ -10,6 +10,7 @@ export default class Ticket implements ITicket {
 	task: string;
 	description: string;
 	steps: Step[];
+	done: booleanNumber;
 	archived: booleanNumber;
 	creationDate: Date;
 	author: string;
@@ -21,6 +22,7 @@ export default class Ticket implements ITicket {
 		this.task = task;
 		this.description = description;
 		this.steps = (steps == undefined) ? [] : steps;
+		this.done = 0;
 		this.archived = 0;
 		this.creationDate = new Date();
 		this.author = this.determineAuthor();

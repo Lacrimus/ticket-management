@@ -5,6 +5,9 @@ Also, [svelte](https://svelte.dev/) is used as an UI framework.
 
 ## Issues
 - internal boolean <-> number conversion due ton indexedDb
+- indexedDb objects are overwritten instead of each property being changed individually
+- deleting tickets resets ticks (only in js, db is unaffected) (component destroyed?)
+- encapsulate dexie.js calls in db.transaction()
 
 ## Technologies
 

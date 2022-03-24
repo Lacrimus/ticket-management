@@ -41,7 +41,10 @@
     <Drawer variant="modal" fixed={false} bind:open>
         <Header>
             <Title>Account</Title>
-            <Subtitle>Mail@mail.de</Subtitle>
+            <Subtitle>
+                <p>Mail@mail.de</p>
+                <p></p>
+            </Subtitle>
         </Header>
         <Header>
             <Title>Einstellungen</Title>
