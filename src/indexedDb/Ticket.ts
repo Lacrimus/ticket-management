@@ -15,9 +15,9 @@ export default class Ticket implements ITicket {
 	creationDate: Date;
 	author: string;
 	room:  string;
-	dueDate: Date | string;
+	dueDate: Date;
 
-	constructor(task: string, description: string, room?: string, dueDate?: Date | string, steps?: Step[]) {
+	constructor(task: string, description: string, room?: string, dueDate?: Date, steps?: Step[]) {
 		this.id = this.determineNextId();
 		this.task = task;
 		this.description = description;

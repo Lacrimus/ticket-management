@@ -1,13 +1,20 @@
 <script>
     import Paper, { Title, Content } from "@smui/paper";
     import List, { Item, Separator, Text } from "@smui/list";
+    import { localDb } from "../indexedDb/DbConnection.ts";
 
-    let stat = {
-        new : 2,
-        open : 2,
-        soondue : 1
-    };
+    let stats = {}
 
+    //Todo: calculate date difference (new: 1 day ago, soondue: 1 day until due) // todo: fix date calculation
+    localDb.on("ready", async function() {
+		try {
+                stats.recent = await localDb.tickets.where("creationDate").aboveOrEqual(Date.now() - new Date(0, 0, 1)).count(),
+                stats.current = await localDb.tickets.where("[done+archived]").equals([0,0]).count(),
+                stats.soondue = await localDb.tickets.where("dueDate").aboveOrEqual(Date.now() - new Date(0, 0, 1)).count()
+		} catch (error) {
+			console.error((error.stack || error));
+		}
+	})
 </script>
 
 <h2>Übersicht</h2>
@@ -24,13 +31,13 @@
     <Content>
         <List nonInteractive>
             <Item>
-                <Text>Neue Tickets: {stat.new}</Text>
+                <Text>Neue Tickets: {stats.recent}</Text>
             </Item>    
             <Item>
-                <Text>Offene Tickets: {stat.open}</Text>
+                <Text>Offene Tickets: {stats.current}</Text>
             </Item>
             <Item>
-                <Text>Bald Fällig: {stat.soondue}</Text>
+                <Text>Bald Fällig: {stats.soondue}</Text>
             </Item>
           </List>
     </Content>

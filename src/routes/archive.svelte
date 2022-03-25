@@ -5,7 +5,7 @@
     import Ticket from "../components/molecules/Ticket.svelte";
     import TicketList from "../components/organisims/TicketList.svelte";
     	
-    import DbConnection, { localDb } from "../indexedDb/DbConnection.ts";
+    import { localDb } from "../indexedDb/DbConnection.ts";
 
     let tickets = [];
 

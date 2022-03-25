@@ -33,7 +33,7 @@ export interface ITicket {
 	creationDate: Date;
 	author: string;
 	room: string;
-	dueDate: Date | string;
+	dueDate: Date;
 }
 
 export interface IStep {

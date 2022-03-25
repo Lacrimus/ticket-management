@@ -28,13 +28,13 @@ let demoticketsIn:Ticket[] = [
 		"Austausch Whiteboard",
 		"Altes Whiteboard durch neues Modell ersetzen.",
 		"4.101",
-		"21.06.2024"
+		new Date(2022, 3, 26)
 	),	
 	new Ticket(
 		"Reparatur Beamer",
 		"EPSON Projektor, Überhitzt ständig, Abmontieren und Entstauben",
 		"2.102",
-		"02.01.2023"
+		new Date(2023, 6, 6)
 	)
 ];
 
