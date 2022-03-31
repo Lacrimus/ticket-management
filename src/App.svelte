@@ -4,7 +4,6 @@
 	import "./routes/_layout.svelte";
 
 	import Home from "./routes/home.svelte";
-	//import Tickets from "./routes/tickets.svelte";
 	import Create from "./routes/create.svelte";
 	import InProcess from "./routes/inprocess.svelte";
 	import Done from "./routes/done.svelte";

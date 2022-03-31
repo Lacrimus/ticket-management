@@ -5,7 +5,7 @@
 
     let stats = {}
 
-    //Todo: calculate date difference (new: 1 day ago, soondue: 1 day until due) // todo: fix date calculation
+    //Todo: calculate date difference (new: 1 day ago, soondue: 1 day until due) // todo:fix date calculation
     localDb.on("ready", async function() {
 		try {
                 stats.recent = await localDb.tickets.where("creationDate").aboveOrEqual(Date.now() - new Date(0, 0, 1)).count(),

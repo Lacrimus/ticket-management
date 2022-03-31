@@ -9,4 +9,3 @@ www/*
 build/*
 
 !www/index.html
-!build/theme/*

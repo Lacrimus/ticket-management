@@ -22,7 +22,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <platform name="electron">
-        <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />
         <icon src="res/electron/icon.png" />
     </platform>
     <hook type="before_prepare" src="hooks/beforePrepare.js"/>
