@@ -15,6 +15,7 @@ Also, [svelte](https://svelte.dev/) is used as an UI framework.
 + svelte UI framework
 + svelte material design
 + google fonts icon set
++ dexie.js for indexedDB
 
 ### Framework / Wrapper
 + Apache Cordova as a cross platform environment using web technologies

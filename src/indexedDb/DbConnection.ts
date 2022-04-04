@@ -16,6 +16,32 @@ export default class DbConnection extends Dexie {
     });
 
     }
+
+    sync() {
+        let remote;
+
+        let headers = new Headers();
+
+        headers.set("Content-Type", "application/json");
+
+        const request = new Request("http://0.0.0.0:80/tickets/", {
+            method: "GET",
+            headers: headers,
+            mode: 'cors',
+        });
+
+        fetch(request).then(response => {
+            let contentType = response.headers.get("content-type");
+            if (!contentType.includes("application/json")) {
+                throw new TypeError("Response not in JSON format.");
+              }
+              return response.json();
+        }).then(data => {
+            //console.log(data);
+            remote = data;
+        });
+        localDb.remoteTickets.bulkPut(remote);
+    }
 }
 
 export const localDb = new DbConnection();
