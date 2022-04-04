@@ -1,0 +1,22 @@
+{
+    "electron": {
+        "linux": {
+            "package": [
+                "tar.gz"
+            ],
+            "arch": [ "x64" ]
+        },
+        "windows": {
+            "package": [
+                "zip"
+            ],
+            "arch": [ "x64" ]
+        },
+        "mac": {
+            "package": [
+                "zip"
+            ],
+            "arch": [ "x64" ]
+        }
+    }
+}

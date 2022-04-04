@@ -17,6 +17,7 @@ export default app;
 
 
 localDb.tickets.mapToClass(Ticket);
+localDb.remoteTickets.mapToClass(Ticket);
 localDb.users.mapToClass(User);
 
 /*DEBUGGING START*/

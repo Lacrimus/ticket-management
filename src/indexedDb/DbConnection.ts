@@ -3,14 +3,16 @@ import Dexie, { type Middleware } from "dexie";
 export default class DbConnection extends Dexie {
 
     tickets!: Dexie.Table<ITicket, number>
+    remoteTickets!: Dexie.Table<ITicket, number>
     users!: Dexie.Table<IUser, number>
 
     constructor() {
         super("IndexedDb");
     
     this.version(1).stores({
-        tickets: "++id, task, tasklong, steps, [done+archived], creationDate, author, room, dueDate",
-        users: "++id, name, mail, color, markedTickets",
+        tickets: " id, task, tasklong, steps, [done+archived], creationDate, author, room, dueDate",
+        remoteTickets: "id, task, tasklong, steps, [done+archived], creationDate, author, room, dueDate",
+        users: "id, name, mail, color, markedTickets",
     });
 
     }
