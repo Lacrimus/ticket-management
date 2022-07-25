@@ -1,11 +1,11 @@
-import type { booleanNumber, ITicket, IStep} from "./DbConnection";
+import type { booleanNumber } from "./DbConnection";
 
  /**
   * None of these properties may be of type boolean! It is not a valid key in an IndexedDB.
   * Reference: https://www.w3.org/TR/IndexedDB/#dfn-valid-key
   */
 
-export default class Ticket implements ITicket {	
+export default class Ticket {	
 	id: number;
 	task: string;
 	description: string;
@@ -53,7 +53,7 @@ export default class Ticket implements ITicket {
 	}
 }
 
-export class Step implements IStep {
+export class Step {
 	description : string;
 	checked : booleanNumber;
 

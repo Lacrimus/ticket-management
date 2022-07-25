@@ -5,7 +5,7 @@
     import StepList from "./StepList.svelte";
     import Snackbar from "@smui/snackbar";
     import type { SnackbarComponentDev } from "@smui/snackbar";
-    import DbConnection, { localDb } from "../../indexedDb/DbConnection.ts";
+    import { localDb } from "../../indexedDb/DbConnection.ts";
     import { createEventDispatcher } from "svelte";
     import type Ticket from "../../indexedDb/Ticket";
 

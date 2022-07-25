@@ -1,12 +1,13 @@
-import type { ITicket, IUser, email} from "./DbConnection";
+import type Ticket from "./Ticket";
+import type Email from "./DbConnection";
 
 
-export default class User implements IUser {	
+export default class User {	
     id: number;
 	name: string;
-    mail: email;
+    mail: Email;
 	color: string;
-    markedTickets: ITicket[];
+    markedTickets: Ticket[];
 
     constructor(id: number, name: string, color: string) {
 		this.id = id;

@@ -2,7 +2,7 @@
     import TopAppBar, { Row, Section, Title } from "@smui/top-app-bar";
     import IconButton, { Icon } from "@smui/icon-button";
     import { drawer } from '../../stores.js';
-    import { localDb } from "../../indexedDb/DbConnection.js";
+    import { localDb } from "../../indexedDb/DbConnection.ts";
 
     let drawerOpen;
 
