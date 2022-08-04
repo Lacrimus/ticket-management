@@ -2,6 +2,7 @@
     import Button, { Label, Icon } from "@smui/button";
     import IconButton from "@smui/icon-button";
     import Textfield from "@smui/textfield";
+    import Card from "@smui/card/src/Card.svelte";
     import { Separator } from "@smui/list"
     import FormField from "@smui/form-field";
     import Snackbar from '@smui/snackbar';
@@ -55,41 +56,47 @@
 			console.error ("Error at adding ticket." + error.name + ":" + error.getMessage())
 		});
 
+        messages.push("Neues Ticket angelegt.");
+        snackbar.open();
+
         input = Ticket.getProto();
     }
     
 </script>
 
-<Label style="display: flex; flex-wrap: wrap; align-items: center; margin-bottom:16px;">
-    <Textfield bind:value={input.task} label="Aufgabe">
-        <IconButton on:click={() => {input.task = null}} class="material-icons" slot="trailingIcon" touch size="button">clear</IconButton>
-    </Textfield>
-    <Textfield bind:value={input.room} label="Raum">
-        <IconButton on:click={() => {input.room = null}} class="material-icons" slot="trailingIcon" touch size="button">clear</IconButton>
-    </Textfield>
-    <Textfield bind:value={input.dueDate} label="Fälligkeitsdatum">
-        <IconButton on:click={() => {input.dueDate = null}} class="material-icons" slot="trailingIcon" touch size="button">clear</IconButton>
-    </Textfield>
-</Label>
-<Textfield style="width: 100%; min-height:20px; margin-bottom: 8px;" helperLine$style="width: 100%;" textarea bind:value="{input.description}" label="Beschreibung"></Textfield>
-
-{#each input.steps as step, i}
-    <FormField>
-        <Textfield bind:value={step.description} label="Schritt {i+1}">
-            <div style="display:inline-flex;" slot="trailingIcon">
-                <IconButton on:click={() => {step.description = null}} class="material-icons" touch size="button">clear</IconButton>
-                <IconButton on:click={() => {input.steps.splice(i, 1); input.steps = input.steps}} class="material-icons" touch size="button">remove_circle_outline</IconButton>
-            </div>
+<Card style="padding: 0 20px">
+    <div class="columns margins" style="gap: 10px 40px">
+        <Textfield bind:value={input.task} label="Aufgabe">
+            <IconButton on:click={() => {input.task = null}} class="material-icons" slot="trailingIcon" touch size="button">clear</IconButton>
         </Textfield>
-    </FormField>
-{/each}
-
-<div class="columns" style="margin-top: 8px; overflow: auto;">
-    <Button on:click={()=>{input.addProtoStep(); input.steps = input.steps}} touch >
-        <Icon class="material-icons">control_point</Icon>
-        <Label>Schritt hinzufügen</Label>
-    </Button>
-</div>
+        <Textfield bind:value={input.room} label="Raum">
+            <IconButton on:click={() => {input.room = null}} class="material-icons" slot="trailingIcon" touch size="button">clear</IconButton>
+        </Textfield>
+        <Textfield bind:value={input.dueDate} label="Fälligkeitsdatum">
+            <IconButton on:click={() => {input.dueDate = null}} class="material-icons" slot="trailingIcon" touch size="button">clear</IconButton>
+        </Textfield>
+    </div>
+    
+    <Textfield style="width: 100%; min-height:20px; margin-bottom: 8px;" helperLine$style="width: 100%;" textarea bind:value="{input.description}" label="Beschreibung"></Textfield>
+    
+    {#each input.steps as step, i}
+        <FormField>
+            <Textfield bind:value={step.description} label="Schritt {i+1}">
+                <div style="display:inline-flex;" slot="trailingIcon">
+                    <IconButton on:click={() => {step.description = null}} class="material-icons" touch size="button">clear</IconButton>
+                    <IconButton on:click={() => {input.steps.splice(i, 1); input.steps = input.steps}} class="material-icons" touch size="button">remove_circle_outline</IconButton>
+                </div>
+            </Textfield>
+        </FormField>
+    {/each}
+    
+    <div class="columns" style="margin-top: 8px; overflow: auto;">
+        <Button on:click={()=>{input.addProtoStep(); input.steps = input.steps}} touch >
+            <Icon class="material-icons">control_point</Icon>
+            <Label>Schritt hinzufügen</Label>
+        </Button>
+    </div>
+</Card>
 
 <Separator style="margin-bottom: 16px;"/>
 
